@@ -1,0 +1,60 @@
+.section-options{
+    display: flex;
+    max-width: 80rem;
+    margin: auto;
+    justify-content: space-between;
+}
+
+
+.section-table{
+    background-color: white;
+    max-width: 80rem;
+    margin: auto;
+    margin-top: .5rem;
+}
+
+
+header{
+    background-color: white;
+    height: 4rem;
+    display: flex;
+    margin: auto;
+    text-align: center;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+    
+}
+.title{
+    height: 4rem;
+}
+
+
+
+.btn-add{
+    background-color: yellow;
+    height: 2rem;
+    width: 5rem;
+    border-radius: 1px solid yellow;
+}
+
+
+@media (max-width:1024px) {
+    .un_address{
+            display:none;
+    }
+
+}
+
+@media (max-width:768px) {
+    .un_age{
+            display:none;
+    }
+
+}
+
+@media (max-width:500px) {
+    .un_first{
+            display:none;
+    }
+
+}
