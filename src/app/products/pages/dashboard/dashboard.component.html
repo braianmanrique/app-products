@@ -13,19 +13,19 @@
       <thead>
         <tr>
           <th class="w100">
-            Logo <i class="fa-duotone fa-circle-info"></i>
+            Logo  <fa-icon class="icon" [icon]="faCoffee"></fa-icon>
           </th>
           <th class="un_first">
-            Nombre del producto
+            Nombre del producto  <fa-icon class="icon" [icon]="faCoffee"></fa-icon>
           </th>
           <th>
-            Descripción
+            Descripción <fa-icon class="icon" [icon]="faCoffee"></fa-icon>
           </th>
-          <th class="un_age w100">
-            Fecha de liberación
+          <th class="un_age w200">
+            Fecha de liberación <fa-icon class="icon" [icon]="faCoffee"></fa-icon>
           </th>
-          <th class="un_address w100">
-            Fecha de reestructuración
+          <th class="un_address w200">
+            Fecha de reestructuración <fa-icon class="icon" [icon]="faCoffee"></fa-icon>
         </th>
         <th class="w100">Acciones</th>
 
@@ -44,16 +44,26 @@
               {{product.description}}
           </td>
           <td class="un_age">
-              60
+              {{product.date_libe | date}}
           </td>
           <td class="un_address">
-              Washington, United States
+              {{product.date_rev | date}}
           </td>
-          <td class="">
-            <button (click)="deleteProduct(product)">
+          <td class="options">
+            <!-- <div>
+              <fa-icon class="icon-options" [icon]="faEllipsisV"></fa-icon>
+            </div> -->
+            <div (click)="editProduct(product)" >
+              <fa-icon class="icon-options" [icon]="faEdit"></fa-icon>
+            
+            </div>
+             <div (click)="deleteProduct(product)">
+              <fa-icon class="icon-options" [icon]="faTrash"></fa-icon>
+             </div>
+            <!-- <button (click)="deleteProduct(product)">
               Delete
             </button>
-            <button  [routerLink]="['/dashboard/products']">Edit</button>
+            <button  [routerLink]="['/dashboard/products']">Edit</button> -->
 
           
         </td>

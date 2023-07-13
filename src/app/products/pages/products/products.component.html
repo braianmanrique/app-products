@@ -1,22 +1,29 @@
 <div class="main">
+    <button class="btn-volver" type="button" [routerLink]="['/dashboard/']" >Volver</button>   
 
     <form class="form"  (ngSubmit)="createProduct()" autocomplete="off" [formGroup]="productForm">
-        
-    <h2>Formulario de Registro</h2>
-        <hr>  
-            <div class="formulario__group form__group-incorrect ">
+            
+            <h2>Formulario de Registro</h2>
+            <hr>
+       
+       
+            <div class="formulario__group  ">
                 <label for="id" class="form_label">ID</label>
                 <div class="form__group-input">
-                    <input type="text" class="form__input " id="id" formControlName="id">    
+                    <input type="text" class="form__input " [ngClass]="{'alert': isValidFields('id')}" id="id" formControlName="id">    
                 </div>  
-                <p class="form__input-error">ID  no valid</p> 
+                <div>
+                    <p *ngIf="isValidFields('id')" class="form__input-error">{{getErrorName('id')}}</p> 
+                </div>
+              
             </div>
     
             <div class="formulario__group">
-                <label for="id" class="form_label">Nombre</label>
+                <label for="name" class="form_label">Nombre </label>
+
                 <div class="form__group-input">
-                    <input type="text" class="form__input" id="id" formControlName="name">
-                    <p class="form__input-error">Este campo es requerido</p> 
+                    <input type="text" class="form__input" id="name"  [ngClass]="{'alert': isValidFields('name')}"  formControlName="name">
+                    <p *ngIf="isValidFields('name')" class="form__input-error">{{getErrorName('name')}}</p> 
                 </div>
              
             </div>
@@ -24,54 +31,60 @@
             <div class="formulario__group">
                 <label for="desc" class="form_label">Descripcion</label>
                 <div class="form__group-input">
-                    <input type="text" class="form__input" id="desc" formControlName="description">                 
+                    <input type="text" class="form__input" id="desc"  [ngClass]="{'alert': isValidFields('description')}" formControlName="description">    
+                    <p *ngIf="isValidFields('description')" class="form__input-error">{{getErrorName('description')}}</p> 
+                               
                 </div>
              
             </div>
     
             <div class="formulario__group">
                 <label for="logo" class="form_label">Logo</label>
-                <div class="custom-input-file col-md-6 col-sm-6 col-xs-6 form__group-input">
-                    <input type="file" class="form__input input-file" id="logo" formControlName="logo"> 
-                    Subir logo...
+                <div class=" col-md-6 col-sm-6 col-xs-6 ">
+                    <input  (change)="saveLogo($any($event.target).files[0])" [ngClass]="{'alert': isValidFields('logo')}"  type="file" class="" id="logo"  formControlName="logo"> 
+                    <!-- Subir logo...   -->
+                        <!-- probando -->
+                    <!-- <input type="file" name="" id=""> -->
+                    <!-- <img [src]="productSelected.logo" alt="">  -->
                 </div>  
+                <p *ngIf="isValidFields('logo')" class="form__input-error">{{getErrorName('logo')}}</p> 
+                    
             </div> 
         
             <div class="formulario__group">
                 <label for="logo" class="form_label">Fecha liberación</label>
                 <div class="form__group-input">
-                    <input type="date" class="form__input" id="logo" formControlName="date_libe">
+                    <input  [ngClass]="{'alert': isValidFields('date_libe')}"  type="date" class="form__input" id="logo" formControlName="date_libe">
+                    <p *ngIf="isValidFields('date_libe')" class="form__input-error">{{getErrorName('date_libe')}}</p> 
                 </div>
              
             </div>
             <div class="formulario__group">
                 <label for="logo" class="form_label">Fecha Revisión</label>
-                <div class="form__group-input">
-                    <input type="date" class="form__input" id="logo" formControlName="date_rev">
+                <div class="form__group-input" >
+                    <input  type="date" class="form__input" id="logo" formControlName="date_rev">
                 </div>
              
             </div>
         
-        <div class="form__message">
-            <p>
-                <b>Error</b> Ingresar todos los campos
-            </p>
-        </div>
+       
     
         <div class="row form__group form__group--btn-enviar" >
-            <button class="form__btn_restart">Reiniciar</button>
+            <button (click)="cleanForm()" type="button" class="form__btn_restart">Reiniciar</button>
         
-            <button class="form__btn" type="submit" >Enviar</button>   
+            <button class="form__btn" type="submit"  [disabled]="productForm.invalid">Enviar</button>   
+            <button class="form__btn" type="button" (click)="updateProduct()"  >Update</button>   
+
           
         </div>
-     
-        <p class="form__message-success">
-            Formulario exitoso!!
-        </p>
+        <div class="form__message" *ngIf="true">
+            <p>
+                 Formulario exitoso!!
+            </p>
+        </div>
+       
         
     </form>
   
     
 </div>
-
-{{productForm.value |json }}

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../models/product.model';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +19,10 @@ export class DashboardComponent implements OnInit {
   public totalProducts : number = 0;
   public from : number = 0;
   public limit : number = 5;
+  faCoffee = faCircleInfo;
+  faEllipsisV = faEllipsisV;
+  faEdit = faEdit;
+  faTrash = faTrash;
   constructor(private productService : ProductsService){
 
   }
@@ -44,14 +53,19 @@ changePage(value: number){
   this.getProducts();
 
 }
-
+editProduct(product: Product){
+  console.log('edit')
+}
 searchProduct(term: string){
   console.log(term)
   if(term.length === 0){
+    this.totalProducts = this.productsT.length
     return this.products = this.productsT;
+
   }
   this.productService.searhProduct(term).subscribe(  (resp: any) => {
     this.products = resp.data;
+    this.totalProducts = this.products.length
     console.log(resp)
   })
   return;

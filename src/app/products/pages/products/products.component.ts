@@ -1,21 +1,25 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { delay } from 'rxjs';
+import { formatDate } from '@angular/common';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit{
-  icon=faTrash;
+  // icon=faTrash;
   public productSelected!: Product;
+  public date_r: string= '';
+  public id_product: string = '';
+  public uploadoLogo!: File ;
 
-  
 
   public productForm:FormGroup = this.fb.group({
     id: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
@@ -23,17 +27,54 @@ export class ProductsComponent implements OnInit{
     description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
     logo: ['', [Validators.required, ]],
     date_libe: ['', [Validators.required]],
-    date_rev: ['', [Validators.required]],
+    date_rev: [ {value :this.date_r, disabled: true }, [Validators.required]],
   }
   ) ;
 
   constructor(private fb: FormBuilder, private productService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(({id}) => {
+      this.id_product = id;
       this.uploadProduct(id);       
+    })
+
+    this.validateDtes();
+   
+  }
+  validateDtes(){
+    // this.productForm.get('date_rev')?.disable();
+
+    this.productForm.get('date_libe')?.valueChanges
+    .subscribe(date_lib=> {
+      let d = new Date(date_lib)
+      this.date_r = (d.getFullYear()+1) + "-" + ("0" +(d.getMonth()+1)).slice(-2) + "-" + ( "0" + (d.getDate()+1)).slice(-2);
+      this.productForm.patchValue({date_rev : this.date_r })
     })
   }
 
+  isValidFields(field: string): boolean | null{
+    return this.productForm.controls[field].errors 
+      && this.productForm.controls[field].touched;
+  }  
+  getErrorName(field: string): string| null{
+    if(!this.productForm.controls[field]) return null;
+
+    const errors = this.productForm.controls[field].errors || {}
+
+    for (const key of Object.keys(errors)) {
+        switch(key){
+          case 'required':
+            return `Este campo es requerido`;
+          case 'minlength':
+            return `Mínimo ${errors['minlength'].requiredLength} caracteres.`
+          case 'maxlength':
+            return `Maximo ${errors['maxlength'].requiredLength} caracteres.`
+        }
+    }
+    return null
+
+  }
+  
   uploadProduct(id:string){
     if(id === 'new'){
       return;
@@ -45,19 +86,45 @@ export class ProductsComponent implements OnInit{
         if(!product){
           return this.router.navigateByUrl(`/dashboard/products`)
         }
+        debugger
+        const {id, name, description, logo, date_libe , date_rev} = product
       this.productSelected = product
-      console.log(product)
+      this.productForm.setValue({id, name, description, logo, date_libe, date_rev})
       return
 
     })
   }
 
   createProduct(){
-    console.log(this.productForm.value)
-    this.productService.saveProduct(this.productForm.value).subscribe(() =>{
-      console.log('creadi')
+    debugger
+    if(this.productForm.invalid){
+      this.productForm.markAllAsTouched()
+      return
+    }
+    console.log(this.productSelected)
+    console.log(this.productForm.getRawValue())
+    this.productService.saveProduct(this.productForm.getRawValue()).subscribe((resp:any) =>{
+      console.log('creadi',resp)
+      this.router.navigateByUrl(`dashboard/products/${resp.product.uid}`)
     })
   }
 
+  cleanForm(){
+    this.productForm.reset();
+  }
+
+  saveLogo(file: File){
+    console.log('saving')
+    this.uploadoLogo = file;
+    this.productService.updatePhoto(file, this.id_product).then(
+      img => console.log(img)
+    )
+  }
+
+  updateProduct(){
+    this.productService.updateProduct(this.productForm.value, this.id_product).subscribe( resp => {
+        console.log(resp)
+    })
+  }
   
 }

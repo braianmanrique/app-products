@@ -3,6 +3,7 @@
     max-width: 80rem;
     margin: auto;
     justify-content: space-between;
+    margin-top: 6rem;
 }
 
 .section-table{
@@ -18,19 +19,28 @@
 }
 
 .btn-search{
-    border: 1px solid gray;
+    border: 1px solid  rgba(175, 170, 170, 0.4);
     border-radius: 6px;
+    outline: red;
+    padding-left: 1rem;
 }
-
 .btn-add{
-    background-color: yellow;
-    height: 3rem;
-    width: 5rem;
-    border: 6px solid yellow;
-    border-radius: 6px;
+    height: 45px;
+    line-height: 45px;
+    width: 15%;
+    background: #d3d60b;
+    color: #fff;
     font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .1s ease all;
 }
-
+.edit{
+    position: relative;
+    left: 19px;
+    top: -12px;
+}
 table{
     border-collapse: collapse;
     font-size: 14px;
@@ -59,13 +69,20 @@ tbody tr:hover{
 }
 
 thead{
-    background-color: rgb(229, 221, 221);
+    background-color: rgba(229, 221, 221, .4);
 }
+
 
 .w100{
     width: 100px;
 }
+.w200{
+    width: 13rem;
+}
 
+.icon{
+    color: gray;
+}
 .footer{
     display: flex;
     justify-content: space-between;
@@ -77,6 +94,23 @@ thead{
 }
 .list-items{
     margin-right: 1rem;
+}
+
+.form__group--btn-enviar{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.form__group--btn-enviar{
+    grid-column: span 2;
+}
+
+.options{
+    text-align: center;
+}
+.icon-options{
+    cursor: pointer;
+    
 }
 @media (max-width:1024px) {
     .un_address{
