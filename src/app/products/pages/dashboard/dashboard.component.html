@@ -1,60 +1,82 @@
 
-<div  >
-  <header>
-    <section >
-      <img class="title" src="../../../../assets/images/descarga.png" alt="">
-    </section>
-  </header>
-
+<div>
   <section class="section-options">
   
-      <input type="text" placeholder="Search...">
-      <button class="btn-add" [routerLink]="['/dashboard/new-product']">Agregar</button>
+      <input type="text" #txtTerm (keyup)="searchProduct(txtTerm.value)" class="btn-search" placeholder="Search...">
+      <button class="btn-add" [routerLink]="['/dashboard/products']">Agregar</button>
   </section>
     
 
   <section class="section-table">
 
-    <table border="1"> 
-
-      <tr>
-        <th>
-          Logo
-      </th>
-        <th class="un_first">
+    <table class="datatable">  
+      <thead>
+        <tr>
+          <th class="w100">
+            Logo <i class="fa-duotone fa-circle-info"></i>
+          </th>
+          <th class="un_first">
             Nombre del producto
-        </th>
-        <th>
+          </th>
+          <th>
             Descripción
+          </th>
+          <th class="un_age w100">
+            Fecha de liberación
+          </th>
+          <th class="un_address w100">
+            Fecha de reestructuración
         </th>
-        
-        <th class="un_age">
-          Fecha de liberación
-        </th>
-        <th class="un_address">
-            Fecha de ......
-        </th>
-    </tr>
-    <tr>
-        <td class="un_first">
-            Bill
+        <th class="w100">Acciones</th>
+
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let product of products">
+          <td class="un_first">
+              {{product.logo | logo}}
+              <!-- <img [src]="product.logo | logo" [alt]=""> -->
+          </td>
+          <td class="un">
+              {{product.name}}
+          </td>
+          <td class="un">
+              {{product.description}}
+          </td>
+          <td class="un_age">
+              60
+          </td>
+          <td class="un_address">
+              Washington, United States
+          </td>
+          <td class="">
+            <button (click)="deleteProduct(product)">
+              Delete
+            </button>
+            <button  [routerLink]="['/dashboard/products']">Edit</button>
+
+          
         </td>
-        <td class="un">
-            Gates
-        </td>
-        <td class="un">
-            Microsoft
-        </td>
-        <td class="un_age">
-            60
-        </td>
-        <td class="un_address">
-            Washington, United States
-        </td>
-    </tr>
+      </tr>
+      </tbody>
+  
     
     </table>
-   
+    <div class="footer">
+      <div class="results">
+       {{totalProducts}} Resultados
+      </div>
+      <div class="list-items">
+  
+        <select name="n-entries"  [(ngModel)]="limit"(click)="changeLimit()"> 
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="15">15</option>
+        </select>
+      </div>
+      <!-- <button (click)="changePage(-5)">Anteriores</button>
+      <button (click)="changePage(5)">Siguientes</button> -->
+    </div>
   </section>
      
     

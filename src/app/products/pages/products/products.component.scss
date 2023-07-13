@@ -1,0 +1,154 @@
+
+.main{
+    max-width: 800px;
+    width: 90%;
+    margin: auto;
+    padding: 40px;
+}
+form{
+    background-color: white;
+    // color: aliceblue;
+    // text-shadow: 2px 2px 2px #000;
+    font-size: 1.2em;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2;
+    
+}
+ h2 {
+    text-align: center;
+}
+
+.form_label{
+    display: block;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.form__input{
+    width: 80%;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 3px solid lightgray;
+    height: 33px;
+    line-height: 45px;
+    padding: 0 40px 0 10px;
+    transition: .3s ease all;
+}
+
+.form__input:focus{
+    border: 3px solid gray;
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(163,163, 163, 0.4);
+}
+
+.form__message,
+.form__group--btn-enviar{
+    grid-column: span 2;
+}
+
+.form__message{
+    margin: 1rem 0 1rem 0;
+    height: 45px;
+    line-height: 45px;
+    background-color: #f66060;
+    padding: 0 15px;
+    border-radius: 3px;
+}
+.form__message p{
+    margin: 0;
+}
+
+.form__group--btn-enviar{
+    display: flex;
+    justify-content: space-evenly;
+}
+.form__btn{
+    height: 45px;
+    line-height: 45px;
+    width: 30%;
+    background: #d3d60b;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .1s ease all;
+}
+
+.form__btn_restart{
+    height: 45px;
+    line-height: 45px;
+    width: 30%;
+    background: #b3acac;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .1s ease all;
+}
+
+.form__message-success{
+    font-size: 14px;
+    color: #119200;
+}
+
+.form__input-error{
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+
+// clase correco o incorrecto para mostrar rojo o verde en inpit
+.form__group-success .form__validation-state{
+    color: #1ed12d;
+    border: 3px solid #1ed12d;
+
+}
+
+// esta clase le pone el borde en rojo
+.form__group-incorrect .form__input{
+    border:3px solid #bb2929;
+}
+
+.custom-input-file{
+    background-color: #941B80;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 auto 0;
+    min-height: 12px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    width: 400px;
+}
+
+.custom-input-file .input-file {
+    border: 10000px solid transparent;
+    cursor: pointer;
+    font-size: 10000px;
+    margin: 0;
+    opacity: 0;
+    outline: 0 none;
+    padding: 0;
+    position: absolute;
+    right: -1000px;
+    top: -1000px;
+   }
+
+@media screen and (max-width: 800px) {
+       .form{
+        grid-template-columns: 1fr;
+       } 
+       .form__message,
+.form__group--btn-enviar{
+    grid-column:1;
+}
+}
+

@@ -1,29 +1,77 @@
-<p>products works!</p>
+<div class="main">
 
+    <form class="form"  (ngSubmit)="createProduct()" autocomplete="off" [formGroup]="productForm">
+        
+    <h2>Formulario de Registro</h2>
+        <hr>  
+            <div class="formulario__group form__group-incorrect ">
+                <label for="id" class="form_label">ID</label>
+                <div class="form__group-input">
+                    <input type="text" class="form__input " id="id" formControlName="id">    
+                </div>  
+                <p class="form__input-error">ID  no valid</p> 
+            </div>
+    
+            <div class="formulario__group">
+                <label for="id" class="form_label">Nombre</label>
+                <div class="form__group-input">
+                    <input type="text" class="form__input" id="id" formControlName="name">
+                    <p class="form__input-error">Este campo es requerido</p> 
+                </div>
+             
+            </div>
+        
+            <div class="formulario__group">
+                <label for="desc" class="form_label">Descripcion</label>
+                <div class="form__group-input">
+                    <input type="text" class="form__input" id="desc" formControlName="description">                 
+                </div>
+             
+            </div>
+    
+            <div class="formulario__group">
+                <label for="logo" class="form_label">Logo</label>
+                <div class="custom-input-file col-md-6 col-sm-6 col-xs-6 form__group-input">
+                    <input type="file" class="form__input input-file" id="logo" formControlName="logo"> 
+                    Subir logo...
+                </div>  
+            </div> 
+        
+            <div class="formulario__group">
+                <label for="logo" class="form_label">Fecha liberación</label>
+                <div class="form__group-input">
+                    <input type="date" class="form__input" id="logo" formControlName="date_libe">
+                </div>
+             
+            </div>
+            <div class="formulario__group">
+                <label for="logo" class="form_label">Fecha Revisión</label>
+                <div class="form__group-input">
+                    <input type="date" class="form__input" id="logo" formControlName="date_rev">
+                </div>
+             
+            </div>
+        
+        <div class="form__message">
+            <p>
+                <b>Error</b> Ingresar todos los campos
+            </p>
+        </div>
+    
+        <div class="row form__group form__group--btn-enviar" >
+            <button class="form__btn_restart">Reiniciar</button>
+        
+            <button class="form__btn" type="submit" >Enviar</button>   
+          
+        </div>
+     
+        <p class="form__message-success">
+            Formulario exitoso!!
+        </p>
+        
+    </form>
+  
+    
+</div>
 
-<h2>Formulario de Registro</h2>
-<hr>
-<label for="">ID</label>
-<input type="text">
-
-<label for="">Nombre</label>
-<input type="text">
-
-
-<label for="">Descripcion </label>
-<input type="text">
-
-<label for="">Logo</label>
-<input type="text">
-
-
-<label for="">Fecha..</label>
-<input type="text">
-
-
-<label for="">Fecha..</label>
-<input type="text">
-
-<button>Reiniciar</button>
-
-<button [routerLink]="['/dashboard']">Enviar</button>
+{{productForm.value |json }}

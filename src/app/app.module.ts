@@ -5,18 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NofoundpageComponent } from './pages/nofoundpage/nofoundpage.component';
 import { ProductsModule } from './products/products.module';
-import { TableComponent } from './productos/components/table/table.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeaderPageComponent } from './pages/header-page/header-page.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NofoundpageComponent,
-    TableComponent
+
+    HeaderPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductsModule
+    ProductsModule,
+    FontAwesomeModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

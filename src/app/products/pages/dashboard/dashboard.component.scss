@@ -5,39 +5,79 @@
     justify-content: space-between;
 }
 
-
 .section-table{
     background-color: white;
     max-width: 80rem;
-    margin: auto;
+    margin:0 auto;
     margin-top: .5rem;
+    border: solid 1px white;
+    font-size: 12px;
+    border-radius: 5px;
+    border-collapse: collapse;
+    width: 100%;
 }
 
-
-header{
-    background-color: white;
-    height: 4rem;
-    display: flex;
-    margin: auto;
-    text-align: center;
-    justify-content: space-around;
-    margin-bottom: 2rem;
-    
+.btn-search{
+    border: 1px solid gray;
+    border-radius: 6px;
 }
-.title{
-    height: 4rem;
-}
-
-
 
 .btn-add{
     background-color: yellow;
-    height: 2rem;
+    height: 3rem;
     width: 5rem;
-    border-radius: 1px solid yellow;
+    border: 6px solid yellow;
+    border-radius: 6px;
+    font-weight: bold;
 }
 
+table{
+    border-collapse: collapse;
+    font-size: 14px;
+    table-layout: fixed;
+    margin: auto;
+    width: 100%;
+}
+th{
+    padding: 20px 15px;
+    border-bottom: solid 1px rgb(229, 221, 221);
+    text-align: left;
 
+    font-weight: 700;
+}
+td{
+    padding: 15px;
+    border-bottom: solid 1px rgb(229, 221, 221);
+    font-weight: bolder;
+    
+}
+tbody tr{
+    cursor: pointer;
+}
+tbody tr:hover{
+    background-color: rgb(171, 163, 163);
+}
+
+thead{
+    background-color: rgb(229, 221, 221);
+}
+
+.w100{
+    width: 100px;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+    align-items: center;
+}
+.results{
+    margin-left: 1rem;
+}
+.list-items{
+    margin-right: 1rem;
+}
 @media (max-width:1024px) {
     .un_address{
             display:none;
