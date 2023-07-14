@@ -40,12 +40,12 @@
     
             <div class="formulario__group">
                 <label for="logo" class="form_label">Logo</label>
-                <div class=" col-md-6 col-sm-6 col-xs-6 ">
+                <div class=" col-md-6 col-sm-6 col-xs-6 " style="text-align: center;">
                     <input  (change)="saveLogo($any($event.target).files[0])" [ngClass]="{'alert': isValidFields('logo')}"  type="file" class="" id="logo"  formControlName="logo"> 
                     <!-- Subir logo...   -->
                         <!-- probando -->
                     <!-- <input type="file" name="" id=""> -->
-                    <!-- <img [src]="productSelected.logo" alt="">  -->
+                    <img *ngIf="productSelected" class="w100 logo-class" [src]="productSelected.logo | logo" alt=""> 
                 </div>  
                 <p *ngIf="isValidFields('logo')" class="form__input-error">{{getErrorName('logo')}}</p> 
                     
@@ -72,7 +72,7 @@
         <div class="row form__group form__group--btn-enviar" >
             <button (click)="cleanForm()" type="button" class="form__btn_restart">Reiniciar</button>
         
-            <button class="form__btn" *ngIf="false" type="submit"  [disabled]="productForm.invalid">Enviar</button>   
+            <button class="form__btn" *ngIf="true" type="submit"  [disabled]="productForm.invalid">Enviar</button>   
             <button class="form__btn" type="button" (click)="updateProduct()"  >Update</button>   
 
           
