@@ -75,7 +75,7 @@ export class ProductsComponent implements OnInit{
   }
   
   uploadProduct(id:string){
-    if(id === 'new'){
+    if(id === 'new-product'){
       return;
     } 
     this.productService.getProductById(id)
@@ -85,7 +85,7 @@ export class ProductsComponent implements OnInit{
         if(!product){
           return this.router.navigateByUrl(`/dashboard/products`)
         }
-        debugger
+        
         const {id, name, description, logo, date_libe , date_rev} = product
       this.productSelected = product
       this.productForm.setValue({id, name, description, logo, date_libe, date_rev})
@@ -95,7 +95,7 @@ export class ProductsComponent implements OnInit{
   }
 
   createProduct(){
-    
+
     if(this.productForm.invalid){
       this.productForm.markAllAsTouched()
       return

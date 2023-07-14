@@ -3,7 +3,7 @@
   <section class="section-options">
   
       <input type="text" #txtTerm (keyup)="searchProduct(txtTerm.value)" class="btn-search" placeholder="Search...">
-      <button class="btn-add" [routerLink]="['/dashboard/products']">Agregar</button>
+      <button class="btn-add" [routerLink]="['products/new-product']">Agregar</button>
   </section>
     
 
@@ -53,7 +53,7 @@
             <!-- <div>
               <fa-icon class="icon-options" [icon]="faEllipsisV"></fa-icon>
             </div> -->
-            <div (click)="editProduct(product)" >
+            <div [routerLink]="['products', product.uid]" >
               <fa-icon class="icon-options" [icon]="faEdit"></fa-icon>
             
             </div>

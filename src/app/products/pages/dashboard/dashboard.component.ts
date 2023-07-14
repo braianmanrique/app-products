@@ -53,9 +53,8 @@ changePage(value: number){
   this.getProducts();
 
 }
-editProduct(product: Product){
-  console.log('edit')
-}
+
+
 searchProduct(term: string){
   console.log(term)
   if(term.length === 0){
