@@ -32,10 +32,10 @@
         </tr>
       </thead>
       <tbody >
-        <tr *ngFor="let product of products">
-          <td class="un_first">
-              {{product.logo | logo}}
-              <!-- <img [src]="product.logo | logo" [alt]=""> -->
+        <tr *ngFor="let product of products; let i = index" >
+          <td class="un_first ">
+              <!-- {{product.logo | logo}} -->
+              <img class="logo-class w100" [src]="product.logo | logo" [alt]="">
           </td>
           <td class="un">
               {{product.name}}

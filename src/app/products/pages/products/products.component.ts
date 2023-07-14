@@ -42,7 +42,6 @@ export class ProductsComponent implements OnInit{
    
   }
   validateDtes(){
-    // this.productForm.get('date_rev')?.disable();
 
     this.productForm.get('date_libe')?.valueChanges
     .subscribe(date_lib=> {
@@ -96,13 +95,12 @@ export class ProductsComponent implements OnInit{
   }
 
   createProduct(){
-    debugger
+    
     if(this.productForm.invalid){
       this.productForm.markAllAsTouched()
       return
     }
-    console.log(this.productSelected)
-    console.log(this.productForm.getRawValue())
+    
     this.productService.saveProduct(this.productForm.getRawValue()).subscribe((resp:any) =>{
       console.log('creadi',resp)
       this.router.navigateByUrl(`dashboard/products/${resp.product.uid}`)
@@ -114,16 +112,20 @@ export class ProductsComponent implements OnInit{
   }
 
   saveLogo(file: File){
-    console.log('saving')
-    this.uploadoLogo = file;
-    this.productService.updatePhoto(file, this.id_product).then(
-      img => console.log(img)
-    )
+    this.uploadoLogo = file;    
   }
 
   updateProduct(){
+
+    // this.productService.updatePhoto(this.uploadoLogo, this.id_product).then(
+    //   img => console.log(img)
+    // )
+
     this.productService.updateProduct(this.productForm.value, this.id_product).subscribe( resp => {
         console.log(resp)
+    }, 
+    (err)=> {
+      console.log(err)
     })
   }
   
