@@ -72,8 +72,8 @@
         <div class="row form__group form__group--btn-enviar" >
             <button (click)="cleanForm()" type="button" class="form__btn_restart">Reiniciar</button>
         
-            <button class="form__btn" *ngIf="true" type="submit"  [disabled]="productForm.invalid">Enviar</button>   
-            <button class="form__btn" type="button" (click)="updateProduct()"  >Update</button>   
+            <button class="form__btn" *ngIf="!productSelected" type="submit"  [disabled]="productForm.invalid">Enviar</button>   
+            <button *ngIf="productSelected" class="form__btn" type="button" (click)="updateProduct()"  >Update</button>   
 
           
         </div>
